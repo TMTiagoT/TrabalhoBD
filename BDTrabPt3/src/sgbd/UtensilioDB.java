@@ -59,7 +59,7 @@ public class UtensilioDB {
         return utensilios;
     }
     
-public void Utensilio_Insert(Utensilio utensilio) {
+    public void Utensilio_Insert(Utensilio utensilio) {
         
         Connection con = null;
         try {
@@ -76,6 +76,27 @@ public void Utensilio_Insert(Utensilio utensilio) {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Utensilio_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Utensilio_Delete(Utensilio utensilio) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("DELETE FROM UTENSILIO WHERE NOME = " + utensilio.getNome());                               
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Delete");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Delete");
         }
         
         ConnectionSGBD.CloseConnection(con);

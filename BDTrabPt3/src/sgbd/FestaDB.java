@@ -88,6 +88,27 @@ public class FestaDB {
         
         ConnectionSGBD.CloseConnection(con);
     }
+    
+    public void Festa_Delete(Festa festa) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("DELETE FROM FESTA WHERE NRO_REGISTRO = " + festa.getNroRegistro());                             
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

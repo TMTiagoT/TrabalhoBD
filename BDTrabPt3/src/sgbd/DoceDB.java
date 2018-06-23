@@ -79,6 +79,27 @@ public class DoceDB {
         
         ConnectionSGBD.CloseConnection(con);
     }
+    
+    public void Doce_Delete(Doce doce) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("DELETE FROM DOCE WHERE NOME = " + doce.getNome());
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Delete");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

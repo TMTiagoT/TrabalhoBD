@@ -86,6 +86,26 @@ public class AlimentoDB {
         
         ConnectionSGBD.CloseConnection(con);
     }
+    
+    public void Alimento_Delete(Alimento alimento) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("DELETE FROM ALIMENTO WHERE NOME = " + alimento.getNome());
+            
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Delete");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
