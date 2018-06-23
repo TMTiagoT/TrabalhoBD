@@ -7,7 +7,9 @@ package main;
 
 import java.util.ArrayList;
 import model.Cliente;
+import model.Utensilio;
 import sgbd.ClienteDB;
+import sgbd.UtensilioDB;
 
 public class Main {
 
@@ -17,12 +19,19 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList<Cliente> clientes = new ArrayList();
+        ArrayList<Utensilio> utensilios = new ArrayList();
         
         ClienteDB clienteDB = new ClienteDB();
         clientes = clienteDB.Cliente_SelectAll();
         
+        UtensilioDB utensilioDB = new UtensilioDB();
+        utensilios = utensilioDB.Utensilio_SelectAll();
+        
         for(Cliente c : clientes){
             System.out.println(c);
+        }
+        for (Utensilio u: utensilios) {
+            System.out.println(u);
         }
    }
     

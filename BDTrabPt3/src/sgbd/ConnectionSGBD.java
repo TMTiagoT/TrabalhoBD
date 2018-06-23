@@ -17,8 +17,8 @@ public class ConnectionSGBD {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String myDB = "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl";
-            String user = "T9778992";
-            String password = "t9778992";
+            String user = "A9790923";
+            String password = "a9790923";
 
             Connection con = DriverManager.getConnection(myDB, user, password);
 
