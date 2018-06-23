@@ -52,10 +52,10 @@ public class UtensilioFestaDB {
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_SelectAll");
+            System.out.println("Erro no UtensilioFesta_SelectAll");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_SelectAll");
+            System.out.println("Erro no UtensilioFesta_SelectAll");
         }
         
         ConnectionSGBD.CloseConnection(con);
