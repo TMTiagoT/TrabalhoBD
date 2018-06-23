@@ -42,4 +42,31 @@ public class ClienteDB {
 
         return clientes;
     }
+    
+    
+    public void Cliente_Insert(Cliente cliente) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO (CLIENTE CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2)"
+                    + "VALUES (" + cliente.getCpf() + ", " + cliente.getNome() + ", " + cliente.getEmail() + ", " + cliente.getEmpresa() + ", " + cliente.getTelefone1() + ", " + cliente.getTelefone2());
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Cliente_SelectAll");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Cliente_SelectAll");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    private void print(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
