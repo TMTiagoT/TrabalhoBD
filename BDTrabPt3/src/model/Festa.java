@@ -36,9 +36,9 @@ public class Festa {
     private String tipo;
     private String dataHora;
     private double precoTotal;
-    private String cpf;
+    private String clienteCpf;
 
-    public Festa(int nroRegistro, int nroConvidados, String endereco, double precoFesta, String tipo, String dataHora, double precoTotal, String cpf) {
+    public Festa(int nroRegistro, int nroConvidados, String endereco, double precoFesta, String tipo, String dataHora, double precoTotal, String clienteCpf) {
         this.nroRegistro = nroRegistro;
         this.nroConvidados = nroConvidados;
         this.endereco = endereco;
@@ -46,12 +46,12 @@ public class Festa {
         this.tipo = tipo;
         this.dataHora = dataHora;
         this.precoTotal = precoTotal;
-        this.cpf = cpf;
+        this.clienteCpf = clienteCpf;
     }
 
     @Override
     public String toString() {
-        return "Festa{" + "nroRegistro=" + nroRegistro + ", nroConvidados=" + nroConvidados + ", endereco=" + endereco + ", precoFesta=" + precoFesta + ", tipo=" + tipo + ", dataHora=" + dataHora + ", precoTotal=" + precoTotal + ", cpf=" + cpf + '}';
+        return "Festa{" + "nroRegistro=" + nroRegistro + ", nroConvidados=" + nroConvidados + ", endereco=" + endereco + ", precoFesta=" + precoFesta + ", tipo=" + tipo + ", dataHora=" + dataHora + ", precoTotal=" + precoTotal + ", cpf=" + clienteCpf + '}';
     }
 
     public int getNroRegistro() {
@@ -110,12 +110,12 @@ public class Festa {
         this.precoTotal = precoTotal;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getClienteCpf() {
+        return clienteCpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setClienteCpf(String clienteCpf) {
+        this.clienteCpf = clienteCpf;
     }
     
     

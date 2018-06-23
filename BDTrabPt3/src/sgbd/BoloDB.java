@@ -58,6 +58,28 @@ public class BoloDB {
 
         return bolos;
     }
+    
+    public void Bolo_Insert(Bolo bolo) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO BOLO (NOME, MODELO, PRECO, DESCRICAO) "
+                    + "VALUES (" + bolo.getNome() + ", " + bolo.getModelo() + ", " + bolo.getPreco() + ", " + bolo.getDescricao() + ")");
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

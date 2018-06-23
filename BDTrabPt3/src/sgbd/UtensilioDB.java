@@ -58,6 +58,28 @@ public class UtensilioDB {
 
         return utensilios;
     }
+    
+public void Utensilio_Insert(Utensilio utensilio) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO UTENSILIO (NOME, QTD_ESTOQUE, TIPO) "
+                    + "VALUES (" + utensilio.getNome() + ", " + utensilio.getQtdEstoque() + ", " + utensilio.getTipo() + ")");                               
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

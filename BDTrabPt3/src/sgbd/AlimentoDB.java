@@ -64,6 +64,28 @@ public class AlimentoDB {
 
         return alimentos;
     }
+    
+    public void Alimento_Insert(Alimento alimento) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO ALIMENTO (NOME, PRECO_PESSOA, DESCRICAO, TIPO_ALIMENTO, PRONTO, TIPO_COMIDA_BEBIDA) "
+                    + "VALUES (" + alimento.getNome() + ", " + alimento.getPrecoPessoa() + ", " + alimento.getDescricao() + ", " + alimento.getTipoAlimento() + ", " + alimento.isPronto() + ", " + alimento.getTipoComidaBebida() + ")");
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

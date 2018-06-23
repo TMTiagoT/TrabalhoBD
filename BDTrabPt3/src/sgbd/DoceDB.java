@@ -38,7 +38,7 @@ public class DoceDB {
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT NOME, MODEL, PRECO_UNIDADE, DESCRICAO FROM DOCE");
+            ResultSet rs = st.executeQuery("SELECT NOME, MODELO, PRECO_UNIDADE, DESCRICAO FROM DOCE");
 
             while (rs.next()) {
                 doces.add(new Doce(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
@@ -56,6 +56,28 @@ public class DoceDB {
         ConnectionSGBD.CloseConnection(con);
 
         return doces;
+    }
+    
+    public void Doce_Insert(Doce doce) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO BOLO (NOME, MODELO, PRECO_UNIDADE, DESCRICAO) "
+                    + "VALUES (" + doce.getNome() + ", " + doce.getModelo() + ", " + doce.getPrecoUnidade() + ", " + doce.getDescricao() + ")");
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
     }
 
     private void print(String string) {

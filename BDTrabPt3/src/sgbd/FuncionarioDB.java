@@ -47,7 +47,7 @@ public class FuncionarioDB {
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2, FUNCAO, FUNCIONARIO_GERENTE_CPF FROM FUNCIONARIO");
+            ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, TELEFONE1, TELEFONE2, FUNCAO, FUNCIONARIO_GERENTE_CPF FROM FUNCIONARIO");
 
             while (rs.next()) {
                 funcionarios.add(new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3),
@@ -66,6 +66,32 @@ public class FuncionarioDB {
         ConnectionSGBD.CloseConnection(con);
 
         return funcionarios;
+    }
+    
+    public void Funcionario_Insert(Funcionario funcionario) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO FUNCIONARIO (CPF, NOME, EMAIL, TELEFONE1, TELEFONE2, FUNCAO, FUNCIONARIO_GERENTE_CPF) "
+                    + "VALUES (" + funcionario.getCpf() + ", " + funcionario.getNome() + ", " + funcionario.getEmail() + ", " + funcionario.getTelefone1() + ", " + funcionario.getTelefone2() + ", " + funcionario.getFuncao() + ", " + funcionario.getFuncionarioGerenteCpf() + ")");                               
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Funcionario_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Funcionario_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+
+    private void print(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

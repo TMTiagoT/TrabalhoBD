@@ -66,6 +66,28 @@ public class FestaDB {
 
         return festas;
     }
+    
+    public void Festa_Insert(Festa festa) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO FESTA (NRO_REGISTRO, NRO_CONVIDADES, ENDERECO, PRECO_FESTA, TIPO, DATA_HORA, PRECO_TOTAL, CLIENTE_CPF) "
+                    + "VALUES (" + festa.getNroRegistro() + ", " + festa.getNroConvidados() + ", " + festa.getEndereco() + ", " + festa.getPrecoFesta() + ", " + festa.getTipo() + ", " + festa.getDataHora() + ", " + festa.getPrecoTotal() + ", " + festa.getClienteCpf() + ")");                               
+            
+            
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
 
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
