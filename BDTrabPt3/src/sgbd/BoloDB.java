@@ -23,13 +23,6 @@ import model.Bolo;
 );*/
 
 
-<<<<<<< HEAD
-/**
- *
- * @author andre
- */
-=======
->>>>>>> master
 public class BoloDB {
     
     /**
@@ -68,13 +61,6 @@ public class BoloDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("INSERT INTO BOLO (NOME, MODELO, PRECO, DESCRICAO) "
-                    + "VALUES (" + bolo.getNome() + ", " + bolo.getModelo() + ", " + bolo.getPreco() + ", " + bolo.getDescricao() + ")");
-            
-            
-=======
             PreparedStatement pst = con.prepareStatement("INSERT INTO BOLO (NOME, MODELO, PRECO, DESCRICAO) "
                     + "VALUES (?, ?, ?, ?)");
             
@@ -84,7 +70,6 @@ public class BoloDB {
             pst.setString(1, bolo.getDescricao());
             
             pst.executeUpdate();
->>>>>>> master
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -102,17 +87,11 @@ public class BoloDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("DELETE FROM BOLO WHERE NOME = " + bolo.getNome());
-            
-=======
             PreparedStatement pst = con.prepareStatement("DELETE FROM BOLO WHERE NOME = ?");
             
             pst.setString(1, bolo.getNome());
             
             pst.executeUpdate();
->>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {

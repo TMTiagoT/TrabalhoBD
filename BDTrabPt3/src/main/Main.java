@@ -18,8 +18,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-<<<<<<< HEAD
         ArrayList<Cliente> clientes = new ArrayList();
         ArrayList<Utensilio> utensilios = new ArrayList();
         
@@ -35,7 +33,7 @@ public class Main {
         for (Utensilio u: utensilios) {
             System.out.println(u);
         }
-=======
+
 //        ArrayList<Cliente> clientes = new ArrayList();
 //        
 //        ClienteDB clienteDB = new ClienteDB();
@@ -47,7 +45,7 @@ public class Main {
         
         TelaInicial telaInicial = new TelaInicial();
         telaInicial.setVisible(true);
->>>>>>> master
+
    }
     
 }

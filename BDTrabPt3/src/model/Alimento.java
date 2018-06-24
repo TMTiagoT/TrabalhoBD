@@ -21,14 +21,7 @@ package model;
     CONSTRAINT CK2_ALIMENTO CHECK(PRONTO IN (0, 1))
 ); */
 
-<<<<<<< HEAD
 
-/**
- *
- * @author andre
- */
-=======
->>>>>>> master
 public class Alimento {
     private String nome;
     private double precoPessoa;

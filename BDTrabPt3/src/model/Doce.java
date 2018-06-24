@@ -14,14 +14,8 @@ package model;
     CONSTRAINT CK1_DOCE CHECK(PRECO_UNIDADE >= 0)
 );*/
 
-<<<<<<< HEAD
 
-/**
- *
- * @author andre
- */
-=======
->>>>>>> master
+
 public class Doce {
     private String nome;
     private String modelo;

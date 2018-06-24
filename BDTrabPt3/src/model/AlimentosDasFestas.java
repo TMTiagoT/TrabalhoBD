@@ -11,10 +11,6 @@ package model;
     FROM ALIMENTO JOIN ALIMENTO_FESTA ON ALIMENTO.NOME = ALIMENTO_FESTA.ALIMENTO_NOME JOIN PRODUTO_ALIMENTO ON PRODUTO_ALIMENTO.ALIMENTO_NOME = ALIMENTO.NOME
     ORDER BY ALIMENTO_FESTA.FESTA_NRO_REGISTRO; */
 
-/**
- *
- * @author andre
- */
 public class AlimentosDasFestas {
     private int festaNroRegistro;
     private String produto;

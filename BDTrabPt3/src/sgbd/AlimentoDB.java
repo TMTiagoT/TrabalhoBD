@@ -29,13 +29,6 @@ import model.Alimento;
     CONSTRAINT CK2_ALIMENTO CHECK(PRONTO IN (0, 1))
 ); */
 
-<<<<<<< HEAD
-/**
- *
- * @author andre
- */
-=======
->>>>>>> master
 public class AlimentoDB {
     
     /**
@@ -74,12 +67,6 @@ public class AlimentoDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("INSERT INTO ALIMENTO (NOME, PRECO_PESSOA, DESCRICAO, TIPO_ALIMENTO, PRONTO, TIPO_COMIDA_BEBIDA) "
-                    + "VALUES (" + alimento.getNome() + ", " + alimento.getPrecoPessoa() + ", " + alimento.getDescricao() + ", " + alimento.getTipoAlimento() + ", " + alimento.isPronto() + ", " + alimento.getTipoComidaBebida() + ")");
-            
-=======
             PreparedStatement pst = con.prepareStatement("INSERT INTO ALIMENTO (NOME, PRECO_PESSOA, DESCRICAO, TIPO_ALIMENTO, PRONTO, TIPO_COMIDA_BEBIDA) "
                     + "VALUES (?, ?, ?, ?, ?, ?)");
             
@@ -91,7 +78,6 @@ public class AlimentoDB {
             pst.setString(6, alimento.getTipoComidaBebida());            
             
             pst.executeUpdate();
->>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -110,17 +96,11 @@ public class AlimentoDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("DELETE FROM ALIMENTO WHERE NOME = " + alimento.getNome());
-            
-=======
             PreparedStatement pst = con.prepareStatement("DELETE FROM ALIMENTO WHERE NOME = ?");
             
             pst.setString(1, alimento.getNome());
             
             pst.executeUpdate();
->>>>>>> master
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -145,11 +125,7 @@ public class AlimentoDB {
             pst.setDouble(1, updated.getPrecoPessoa());
             pst.setString(2, updated.getDescricao());
             pst.setString(3, updated.getTipoAlimento());
-<<<<<<< HEAD
-            pst.setBoolean(4, updated.isPronto());
-=======
             pst.setInt(4, updated.isPronto() ? 1 : 0);
->>>>>>> master
             pst.setString(5, updated.getTipoComidaBebida());
             pst.setString(6, alimento.getNome());
             

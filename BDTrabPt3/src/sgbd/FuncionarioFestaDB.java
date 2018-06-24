@@ -27,13 +27,6 @@ import model.FuncionarioFesta;
     CONSTRAINT CK1_FUNCIONARIO_FESTA CHECK(PRECO_FUNCIONARIO >= 0) --checar a validade do preco do funcionario (tem que ser positivo)
 );*/
 
-<<<<<<< HEAD
-/**
- *
- * @author andre
- */
-=======
->>>>>>> master
 public class FuncionarioFestaDB {
     
     /**
@@ -72,12 +65,6 @@ public class FuncionarioFestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("INSERT INTO FUNCIONARIO (FUNCIONARIO_CPF, FESTA_NRO_REGISTRO, PRECO_FUNCIONARIO) "
-                    + "VALUES (" + funcionarioFesta.getFuncionarioCpf() + ", " + funcionarioFesta.getPrecoFuncionario() + ", " + funcionarioFesta.getPrecoFuncionario() + ")");                               
-            
-=======
             PreparedStatement pst = con.prepareStatement("INSERT INTO FUNCIONARIO (FUNCIONARIO_CPF, FESTA_NRO_REGISTRO, PRECO_FUNCIONARIO) "
                     + "VALUES (?, ?, ?)");
             
@@ -86,7 +73,6 @@ public class FuncionarioFestaDB {
             pst.setDouble(3, funcionarioFesta.getPrecoFuncionario());
             
             pst.executeUpdate();
->>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -105,11 +91,6 @@ public class FuncionarioFestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-<<<<<<< HEAD
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("DELETE FROM FUNCIONARIO_Festa WHERE FUNCIONARIO_CPF = " + funcionarioFesta.getFuncionarioCpf() + " AND FESTA_NRO_REGISTRO = " + funcionarioFesta.getFestaNroRegistro());                               
-            
-=======
             PreparedStatement pst = con.prepareStatement("DELETE FROM FUNCIONARIO_Festa "
                     + "WHERE FUNCIONARIO_CPF = ? AND FESTA_NRO_REGISTRO = ?");                               
             
@@ -117,7 +98,6 @@ public class FuncionarioFestaDB {
             pst.setInt(2, funcionarioFesta.getFestaNroRegistro());
             
             pst.executeUpdate();
->>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
