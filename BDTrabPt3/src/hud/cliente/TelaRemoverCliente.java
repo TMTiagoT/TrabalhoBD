@@ -5,12 +5,16 @@
  */
 package hud.cliente;
 
+import model.Cliente;
+import sgbd.ClienteDB;
+
 /**
  *
  * @author thiago
  */
 public class TelaRemoverCliente extends javax.swing.JInternalFrame {
-
+    private String cpf;
+    
     /**
      * Creates new form TelaInicialInterna
      */
@@ -37,10 +41,21 @@ public class TelaRemoverCliente extends javax.swing.JInternalFrame {
 
         jLabel2.setText("CPF: ");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Remover Cliente");
 
         jButton1.setText("Remover");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +91,18 @@ public class TelaRemoverCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        cpf = jTextField1.getText();
+        Cliente cliente = new Cliente(cpf, null, null, null, 0, 0);
+        ClienteDB clientedb = new ClienteDB();
+        clientedb.Cliente_Delete(cliente);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

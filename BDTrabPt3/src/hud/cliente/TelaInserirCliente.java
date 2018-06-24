@@ -223,17 +223,11 @@ public class TelaInserirCliente extends javax.swing.JInternalFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
         nome = textField1.getText();
-        System.out.println(nome);
         cpf = textField2.getText();
-        System.out.println(cpf);
         email = textField3.getText();
-        System.out.println(email);
         empresa = textField4.getText();
-        System.out.println(empresa);
         telefone1 = Integer.parseInt(textField5.getText());
-        System.out.println(telefone1);
         telefone2 = Integer.parseInt(textField6.getText());
-        System.out.println(telefone2);
         Cliente cliente = new Cliente(cpf, nome, email, empresa, telefone1, telefone2);
         ClienteDB clientedb = new ClienteDB();
         clientedb.Cliente_Insert(cliente);
