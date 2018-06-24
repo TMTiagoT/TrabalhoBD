@@ -64,9 +64,9 @@ public class DoceDB {
                     + "VALUES (?, ?, ?, ?)");
             
             pst.setString(1, doce.getNome());
-            pst.setString(1, doce.getModelo());
-            pst.setDouble(1, doce.getPrecoUnidade());
-            pst.setString(1, doce.getDescricao());
+            pst.setString(2, doce.getModelo());
+            pst.setDouble(3, doce.getPrecoUnidade());
+            pst.setString(4, doce.getDescricao());
             
             pst.executeUpdate();
             
