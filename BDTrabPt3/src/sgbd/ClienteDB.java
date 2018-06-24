@@ -26,9 +26,10 @@ public class ClienteDB {
             ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2 FROM CLIENTE");
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getString("CPF"), rs.getString("NOME"), rs.getString("EMAIL"),
-                                    rs.getString("EMPRESA"), rs.getInt("TELEFONE1"), rs.getInt("TELEFONE2")));
+                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3),
+                                    rs.getString(4), rs.getBigDecimal(5), rs.getBigDecimal(6)));
             }
+            
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -57,8 +58,8 @@ public class ClienteDB {
             pst.setString(2, cliente.getNome());
             pst.setString(3, cliente.getEmail());
             pst.setString(4, cliente.getEmpresa());
-            pst.setInt(5, cliente.getTelefone1());
-            pst.setInt(6, cliente.getTelefone2());
+            pst.setBigDecimal(5, cliente.getTelefone1());
+            pst.setBigDecimal(6, cliente.getTelefone2());
             
             pst.executeUpdate();
             
@@ -110,8 +111,8 @@ public class ClienteDB {
             pst.setString(1, updated.getNome());
             pst.setString(2, updated.getEmail());
             pst.setString(3, updated.getEmpresa());
-            pst.setInt(4, updated.getTelefone1());
-            pst.setInt(5, updated.getTelefone2());
+            pst.setBigDecimal(4, updated.getTelefone1());
+            pst.setBigDecimal(5, updated.getTelefone2());
             pst.setString(6, cliente.getCpf());
             
             pst.executeUpdate();

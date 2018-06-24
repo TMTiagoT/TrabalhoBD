@@ -352,6 +352,7 @@ public class TelaInicial extends javax.swing.JFrame {
         TelaSelecionarTCliente tstc = new TelaSelecionarTCliente();
         telaPrincipal.add(tstc);
         tstc.setVisible(true);
+        tstc.listarClientes();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed

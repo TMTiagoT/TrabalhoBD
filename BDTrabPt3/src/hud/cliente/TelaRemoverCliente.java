@@ -5,6 +5,7 @@
  */
 package hud.cliente;
 
+import java.math.BigDecimal;
 import model.Cliente;
 import sgbd.ClienteDB;
 
@@ -99,7 +100,7 @@ public class TelaRemoverCliente extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         cpf = jTextField1.getText();
-        Cliente cliente = new Cliente(cpf, null, null, null, 0, 0);
+        Cliente cliente = new Cliente(cpf, null, null, null, new BigDecimal(0), new BigDecimal(0));
         ClienteDB clientedb = new ClienteDB();
         clientedb.Cliente_Delete(cliente);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -5,6 +5,7 @@
  */
 package hud.cliente;
     
+import java.math.BigDecimal;
 import model.Cliente;
 import sgbd.ClienteDB;
 
@@ -18,8 +19,8 @@ public class TelaAlterarCliente extends javax.swing.JInternalFrame {
     private String cpf;
     private String email;
     private String empresa;
-    private int telefone1;
-    private int telefone2;
+    private BigDecimal telefone1;
+    private BigDecimal telefone2;
     
     /**
      * Creates new form TelaInicialInterna
@@ -242,10 +243,10 @@ public class TelaAlterarCliente extends javax.swing.JInternalFrame {
         nome =  textField2.getText();
         email =  textField3.getText();
         empresa =  textField4.getText();
-        telefone1 = Integer.parseInt(textField5.getText());
-        telefone2 = Integer.parseInt(textField6.getText());
+        telefone1 = new BigDecimal(textField5.getText());
+        telefone2 = new BigDecimal(textField6.getText());
         
-        Cliente cliente = new Cliente(cpf, null, null, null, 0, 0);
+        Cliente cliente = new Cliente(cpf, null, null, null, new BigDecimal(0), new BigDecimal(0));
         Cliente updated = new Cliente(null, nome, email, empresa, telefone1, telefone2);
         ClienteDB clientedb = new ClienteDB();
         clientedb.Cliente_Update(cliente, updated);
