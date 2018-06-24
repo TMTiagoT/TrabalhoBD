@@ -31,10 +31,13 @@ import model.Festa;
     CONSTRAINT CK3_FESTA CHECK(PRECO_FESTA >= 0)
 ); */
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class FestaDB {
     
     /**
@@ -73,10 +76,24 @@ public class FestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO FESTA (NRO_REGISTRO, NRO_CONVIDADES, ENDERECO, PRECO_FESTA, TIPO, DATA_HORA, PRECO_TOTAL, CLIENTE_CPF) "
                     + "VALUES (" + festa.getNroRegistro() + ", " + festa.getNroConvidados() + ", " + festa.getEndereco() + ", " + festa.getPrecoFesta() + ", " + festa.getTipo() + ", " + festa.getDataHora() + ", " + festa.getPrecoTotal() + ", " + festa.getClienteCpf() + ")");                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO FESTA (NRO_CONVIDADOS, ENDERECO, PRECO_FESTA, TIPO, DATA_HORA, CLIENTE_CPF) "
+                    + "VALUES (?, ?, ?, ?, TO_DATE(?, 'DD-MM-YYYY HH:MI:SS'), ?)");
+            
+            pst.setInt(1, festa.getNroConvidados());
+            pst.setString(2, festa.getEndereco());
+            pst.setDouble(3, festa.getPrecoFesta());
+            pst.setString(4, festa.getTipo());
+            pst.setString(5, festa.getDataHora());
+            pst.setString(6, festa.getClienteCpf());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -95,9 +112,17 @@ public class FestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM FESTA WHERE NRO_REGISTRO = " + festa.getNroRegistro());                             
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM FESTA WHERE NRO_REGISTRO = ?");                             
+            
+            pst.setInt(1, festa.getNroRegistro());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -117,7 +142,11 @@ public class FestaDB {
         try {
             con = ConnectionSGBD.getConnection();
             PreparedStatement pst = con.prepareStatement("UPDATE FESTA "
+<<<<<<< HEAD
                     + "SET NRO_CONVIDADES = ?, ENDERECO = ?, TIPO = ?, DATA_HORA = ?, CLIENTE_CPF = ? " +
+=======
+                    + "SET NRO_CONVIDADOS = ?, ENDERECO = ?, TIPO = ?, DATA_HORA = TO_DATE(?, 'DD-MM-YYYY HH:MI:SS'), CLIENTE_CPF = ? " +
+>>>>>>> master
                     "WHERE NRO_REGISTRO = ?");
 
             pst.setInt(1, updated.getNroConvidados());

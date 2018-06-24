@@ -23,10 +23,13 @@ import model.Utensilio;
     CONSTRAINT CK1_UTENSILIO CHECK(QTD_ESTOQUE >= 0)
 ); */
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class UtensilioDB {
     
     /**
@@ -65,10 +68,21 @@ public class UtensilioDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO UTENSILIO (NOME, QTD_ESTOQUE, TIPO) "
                     + "VALUES (" + utensilio.getNome() + ", " + utensilio.getQtdEstoque() + ", " + utensilio.getTipo() + ")");                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO UTENSILIO (NOME, QTD_ESTOQUE, TIPO) "
+                    + "VALUES (?, ?, ?)");
+            
+            pst.setString(1, utensilio.getNome());
+            pst.setInt(2, utensilio.getQtdEstoque());
+            pst.setString(3, utensilio.getTipo());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -87,9 +101,17 @@ public class UtensilioDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM UTENSILIO WHERE NOME = " + utensilio.getNome());                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM UTENSILIO WHERE NOME = ?");
+            
+            pst.setString(1, utensilio.getNome());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {

@@ -15,10 +15,13 @@ package model;
     CONSTRAINT CK1_BOLO CHECK(PRECO >= 0)
 );*/
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class Bolo {
     private String nome;
     private String modelo;

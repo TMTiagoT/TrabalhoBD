@@ -31,10 +31,13 @@ import model.Funcionario;
     CONSTRAINT CK4_FUNCIONARIO CHECK(TELEFONE2 IS NULL OR TELEFONE2 >= 0)
 );*/
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class FuncionarioDB {
     
     /**
@@ -52,7 +55,11 @@ public class FuncionarioDB {
 
             while (rs.next()) {
                 funcionarios.add(new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3),
+<<<<<<< HEAD
                                     rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+=======
+                                    rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
+>>>>>>> master
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
@@ -74,10 +81,25 @@ public class FuncionarioDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO FUNCIONARIO (CPF, NOME, EMAIL, TELEFONE1, TELEFONE2, FUNCAO, FUNCIONARIO_GERENTE_CPF) "
                     + "VALUES (" + funcionario.getCpf() + ", " + funcionario.getNome() + ", " + funcionario.getEmail() + ", " + funcionario.getTelefone1() + ", " + funcionario.getTelefone2() + ", " + funcionario.getFuncao() + ", " + funcionario.getFuncionarioGerenteCpf() + ")");                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO FUNCIONARIO (CPF, NOME, EMAIL, TELEFONE1, TELEFONE2, FUNCAO, FUNCIONARIO_GERENTE_CPF) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            
+            pst.setString(1, funcionario.getCpf());
+            pst.setString(2, funcionario.getNome());
+            pst.setString(3, funcionario.getEmail());
+            pst.setInt(4, funcionario.getTelefone1());
+            pst.setInt(5, funcionario.getTelefone2());
+            pst.setString(6, funcionario.getFuncao());
+            pst.setString(7, funcionario.getFuncionarioGerenteCpf());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -96,9 +118,17 @@ public class FuncionarioDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM FUNCIONARIO WHERE CPF = " + funcionario.getCpf());                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM FUNCIONARIO WHERE CPF = ?");                               
+            
+            pst.setString(1, funcionario.getCpf());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -112,7 +142,11 @@ public class FuncionarioDB {
         ConnectionSGBD.CloseConnection(con);
     }
     
+<<<<<<< HEAD
     public void Funcionario_Update(Funcionario festa, Funcionario updated) {
+=======
+     public void Funcionario_Update(Funcionario festa, Funcionario updated) {
+>>>>>>> master
         
         Connection con = null;
         try {

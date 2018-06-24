@@ -22,10 +22,13 @@ import model.Doce;
     CONSTRAINT CK1_DOCE CHECK(PRECO_UNIDADE >= 0)
 );*/
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class DoceDB {
     
         /**
@@ -64,10 +67,22 @@ public class DoceDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO BOLO (NOME, MODELO, PRECO_UNIDADE, DESCRICAO) "
                     + "VALUES (" + doce.getNome() + ", " + doce.getModelo() + ", " + doce.getPrecoUnidade() + ", " + doce.getDescricao() + ")");
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO BOLO (NOME, MODELO, PRECO_UNIDADE, DESCRICAO) "
+                    + "VALUES (?, ?, ?, ?)");
+            
+            pst.setString(1, doce.getNome());
+            pst.setString(1, doce.getModelo());
+            pst.setDouble(1, doce.getPrecoUnidade());
+            pst.setString(1, doce.getDescricao());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -86,9 +101,17 @@ public class DoceDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM DOCE WHERE NOME = " + doce.getNome());
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM DOCE WHERE NOME = ?");
+            
+            pst.setString(1, doce.getNome());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -102,7 +125,11 @@ public class DoceDB {
         ConnectionSGBD.CloseConnection(con);
     }
     
+<<<<<<< HEAD
     public void Doce_Update(Doce doce, Doce updated) {
+=======
+     public void Doce_Update(Doce doce, Doce updated) {
+>>>>>>> master
         
         Connection con = null;
         try {

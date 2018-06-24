@@ -20,10 +20,13 @@ package model;
 );*/
 
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class FuncionarioFesta {
     private String funcionarioCpf;
     private int festaNroRegistro;

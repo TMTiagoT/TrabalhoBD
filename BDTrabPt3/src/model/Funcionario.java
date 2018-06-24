@@ -24,20 +24,32 @@ package model;
 );*/
 
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class Funcionario {
     private String cpf;
     private String nome;
     private String email;
+<<<<<<< HEAD
     private String telefone1;
     private String telefone2;
     private String funcao;
     private String funcionarioGerenteCpf;
 
     public Funcionario(String cpf, String nome, String email, String telefone1, String telefone2, String funcao, String funcionarioGerenteCpf) {
+=======
+    private int telefone1;
+    private int telefone2;
+    private String funcao;
+    private String funcionarioGerenteCpf;
+
+    public Funcionario(String cpf, String nome, String email, int telefone1, int telefone2, String funcao, String funcionarioGerenteCpf) {
+>>>>>>> master
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -76,6 +88,7 @@ public class Funcionario {
         this.email = email;
     }
 
+<<<<<<< HEAD
     public String getTelefone1() {
         return telefone1;
     }
@@ -89,6 +102,21 @@ public class Funcionario {
     }
 
     public void setTelefone2(String telefone2) {
+=======
+    public int getTelefone1() {
+        return telefone1;
+    }
+
+    public void setTelefone1(int telefone1) {
+        this.telefone1 = telefone1;
+    }
+
+    public int getTelefone2() {
+        return telefone2;
+    }
+
+    public void setTelefone2(int telefone2) {
+>>>>>>> master
         this.telefone2 = telefone2;
     }
 

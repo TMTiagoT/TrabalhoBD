@@ -15,10 +15,13 @@ package model;
 ); */
 
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class Utensilio {
     private String nome;
     private int qtdEstoque;

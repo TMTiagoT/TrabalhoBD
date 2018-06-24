@@ -27,10 +27,13 @@ import model.UtensilioFesta;
     CONSTRAINT CK1_UTENSILIO_FESTA CHECK(QUANTIDADE >= 0) --validando quantidade de utensilio necessitada, visto que deve ser um valor positivo
 );*/
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class UtensilioFestaDB {
     
     /**
@@ -69,10 +72,21 @@ public class UtensilioFestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO UTENSILIO_FESTA (FESTA_NRO_REGISTRO, UTENSILIO_NOME, QUANTIDADE) "
                     + "VALUES (" + utensilioFesta.getFestaNroRegistro() + ", " + utensilioFesta.getUtensilioNome() + ", " + utensilioFesta.getQuantidade() + ")");                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO UTENSILIO_FESTA (FESTA_NRO_REGISTRO, UTENSILIO_NOME, QUANTIDADE) "
+                    + "VALUES (?, ?, ?)");
+            
+            pst.setInt(1, utensilioFesta.getFestaNroRegistro());
+            pst.setString(2, utensilioFesta.getUtensilioNome());
+            pst.setInt(3, utensilioFesta.getQuantidade());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -91,9 +105,18 @@ public class UtensilioFestaDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM UTENSILIO_FESTA WHERE FESTA_NRO_REGISTRO = " + utensilioFesta.getFestaNroRegistro() + " AND UTENSILIO_NOME = " + utensilioFesta.getUtensilioNome());                               
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM UTENSILIO_FESTA WHERE FESTA_NRO_REGISTRO = ? AND UTENSILIO_NOME = ?");                               
+            
+            pst.setInt(1, utensilioFesta.getFestaNroRegistro());
+            pst.setString(2, utensilioFesta.getUtensilioNome());
+
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {

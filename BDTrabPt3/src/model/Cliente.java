@@ -21,10 +21,10 @@ public class Cliente {
     private String nome;
     private String email;
     private String empresa;
-    private String telefone1;
-    private String telefone2;
+    private int telefone1;
+    private int telefone2;
 
-    public Cliente(String cpf, String nome, String email, String empresa, String telefone1, String telefone2) {
+    public Cliente(String cpf, String nome, String email, String empresa, int telefone1, int telefone2) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -37,7 +37,7 @@ public class Cliente {
     public String toString() {
         return ("CPF: " + this.cpf + " \tNome: " + this.nome + " \tEmail: " + ((this.email == null) ? ("") : (this.email)) 
                 + " \tEmpresa: " + ((this.empresa == null) ? ("") : (this.empresa)) + " \tTelefone 1: " + this.telefone1 
-                + " \tTelefone 2: " + ((this.telefone2 == null) ? ("") : (this.telefone2)));
+                + " \tTelefone 2: " + this.telefone2);
     }
 
     public String getCpf() {
@@ -72,19 +72,19 @@ public class Cliente {
         this.empresa = empresa;
     }
 
-    public String getTelefone1() {
+    public int getTelefone1() {
         return telefone1;
     }
 
-    public void setTelefone1(String telefone1) {
+    public void setTelefone1(int telefone1) {
         this.telefone1 = telefone1;
     }
 
-    public String getTelefone2() {
+    public int getTelefone2() {
         return telefone2;
     }
 
-    public void setTelefone2(String telefone2) {
+    public void setTelefone2(int telefone2) {
         this.telefone2 = telefone2;
     }
     

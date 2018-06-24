@@ -27,7 +27,7 @@ public class ClienteDB {
 
             while (rs.next()) {
                 clientes.add(new Cliente(rs.getString("CPF"), rs.getString("NOME"), rs.getString("EMAIL"),
-                                    rs.getString("EMPRESA"), rs.getString("TELEFONE1"), rs.getString("TELEFONE2")));
+                                    rs.getString("EMPRESA"), rs.getInt("TELEFONE1"), rs.getInt("TELEFONE2")));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
@@ -50,10 +50,24 @@ public class ClienteDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("INSERT INTO CLIENTE (CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2) "
                     + "VALUES (" + cliente.getCpf() + ", " + cliente.getNome() + ", " + cliente.getEmail() + ", " + cliente.getEmpresa() + ", " + cliente.getTelefone1() + ", " + cliente.getTelefone2() + ")");
             
+=======
+            PreparedStatement pst = con.prepareStatement("INSERT INTO CLIENTE (CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
+            
+            pst.setString(1, cliente.getCpf());
+            pst.setString(1, cliente.getNome());
+            pst.setString(1, cliente.getEmail());
+            pst.setString(1, cliente.getEmpresa());
+            pst.setInt(1, cliente.getTelefone1());
+            pst.setInt(1, cliente.getTelefone2());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
@@ -73,9 +87,17 @@ public class ClienteDB {
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
+<<<<<<< HEAD
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("DELETE FROM CLIENTE WHERE CPF = " + cliente.getCpf());
             
+=======
+            PreparedStatement pst = con.prepareStatement("DELETE FROM CLIENTE WHERE CPF = ?");
+            
+             pst.setString(1, cliente.getCpf());
+            
+            pst.executeUpdate();
+>>>>>>> master
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {

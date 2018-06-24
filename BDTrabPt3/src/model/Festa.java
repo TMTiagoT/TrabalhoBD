@@ -24,10 +24,13 @@ package model;
 ); */
 
 
+<<<<<<< HEAD
 /**
  *
  * @author andre
  */
+=======
+>>>>>>> master
 public class Festa {
     private int nroRegistro;
     private int nroConvidados;
