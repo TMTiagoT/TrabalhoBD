@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -105,6 +106,35 @@ public class FestaDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Festa_Update(Festa festa, Festa updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE FESTA "
+                    + "SET NRO_CONVIDADES = ?, ENDERECO = ?, TIPO = ?, DATA_HORA = ?, CLIENTE_CPF = ? " +
+                    "WHERE NRO_REGISTRO = ?");
+
+            pst.setInt(0, updated.getNroConvidados());
+            pst.setString(1, updated.getEndereco());
+            pst.setString(2, updated.getTipo());
+            pst.setString(3, updated.getDataHora());
+            pst.setString(4, updated.getClienteCpf());
+            pst.setInt(5, festa.getNroRegistro());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Festa_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);

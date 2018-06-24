@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -106,6 +107,36 @@ public class FuncionarioDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Funcionario_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Funcionario_Update(Funcionario festa, Funcionario updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE FUNCIONARIO "
+                    + "SET NOME = ?, EMAIL = ?, TELEFONE1 = ?, TELEFONE2 = ?, FUNCAO = ?, FUNCIONARIO_GERENTE_CPF = ? " +
+                    "WHERE NRO_REGISTRO = ?");
+
+            pst.setString(0, updated.getNome());
+            pst.setString(1, updated.getEmail());
+            pst.setInt(2, updated.getTelefone1());
+            pst.setInt(3, updated.getTelefone2());
+            pst.setString(4, updated.getFuncao());
+            pst.setString(5, updated.getFuncionarioGerenteCpf());
+            pst.setString(6, festa.getCpf());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Funcionario_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Funcionario_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);

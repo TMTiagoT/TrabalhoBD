@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,6 +84,35 @@ public class ClienteDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Cliente_Update(Cliente cliente, Cliente updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE CLIENTE "
+                    + "SET NOME = ?, EMAIL = ?, EMPRESA = ?, TELEFONE1 = ?, TELEFONE2 = ? " +
+                    "WHERE CPF = ?");
+
+            pst.setString(0, updated.getNome());
+            pst.setString(1, updated.getEmail());
+            pst.setString(2, updated.getEmpresa());
+            pst.setInt(3, updated.getTelefone1());
+            pst.setInt(4, updated.getTelefone2());
+            pst.setString(5, cliente.getCpf());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Cliente_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Cliente_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);

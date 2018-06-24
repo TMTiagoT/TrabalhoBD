@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -97,6 +98,32 @@ public class UtensilioDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Utensilio_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Utensilio_Update(Utensilio utensilio, Utensilio updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE UTENSILIO "
+                    + "SET QTD_ESTOQUE = ?, TIPO = ? " +
+                    "WHERE NOME = ?");
+
+            pst.setInt(0, updated.getQtdEstoque());
+            pst.setString(1, updated.getTipo());
+            pst.setString(2, utensilio.getNome());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Utensilio_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);

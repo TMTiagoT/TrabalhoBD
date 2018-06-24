@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -102,6 +103,35 @@ public class AlimentoDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Alimento_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Alimento_Update(Alimento alimento, Alimento updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE ALIMENTO "
+                    + "SET PRECO_PESSOA = ?, DESCRICAO = ?, TIPO_ALIMENTO = ?, PRONTO = ?, TIPO_COMIDA_BEBIDA = ? " +
+                    "WHERE NOME = ?");
+
+            pst.setDouble(0, updated.getPrecoPessoa());
+            pst.setString(1, updated.getDescricao());
+            pst.setString(2, updated.getTipoAlimento());
+            pst.setBoolean(3, updated.isPronto());
+            pst.setString(4, updated.getTipoComidaBebida());
+            pst.setString(5, alimento.getNome());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Alimento_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);

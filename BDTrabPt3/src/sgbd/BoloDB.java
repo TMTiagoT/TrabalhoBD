@@ -6,6 +6,7 @@
 package sgbd;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -97,6 +98,33 @@ public class BoloDB {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Bolo_Delete");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Bolo_Update(Bolo bolo, Bolo updated) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE BOLO "
+                    + "SET MODELO = ?, PRECO = ?, DESCRICAO = ?" +
+                    "WHERE NOME = ?");
+
+            pst.setString(0, updated.getModelo());
+            pst.setDouble(1, updated.getPreco());
+            pst.setString(2, updated.getDescricao());
+            pst.setString(3, bolo.getNome());
+            
+            pst.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Update");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Doce_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);
