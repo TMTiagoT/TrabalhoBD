@@ -65,9 +65,9 @@ public class BoloDB {
                     + "VALUES (?, ?, ?, ?)");
             
             pst.setString(1, bolo.getNome());
-            pst.setString(1, bolo.getModelo());
-            pst.setDouble(1, bolo.getPreco());
-            pst.setString(1, bolo.getDescricao());
+            pst.setString(2, bolo.getModelo());
+            pst.setDouble(3, bolo.getPreco());
+            pst.setString(4, bolo.getDescricao());
             
             pst.executeUpdate();
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim

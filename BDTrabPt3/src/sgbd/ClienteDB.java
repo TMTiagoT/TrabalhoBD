@@ -54,11 +54,11 @@ public class ClienteDB {
                     + "VALUES (?, ?, ?, ?, ?, ?)");
             
             pst.setString(1, cliente.getCpf());
-            pst.setString(1, cliente.getNome());
-            pst.setString(1, cliente.getEmail());
-            pst.setString(1, cliente.getEmpresa());
-            pst.setInt(1, cliente.getTelefone1());
-            pst.setInt(1, cliente.getTelefone2());
+            pst.setString(2, cliente.getNome());
+            pst.setString(3, cliente.getEmail());
+            pst.setString(4, cliente.getEmpresa());
+            pst.setInt(5, cliente.getTelefone1());
+            pst.setInt(6, cliente.getTelefone2());
             
             pst.executeUpdate();
             
