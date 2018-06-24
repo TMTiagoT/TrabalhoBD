@@ -117,12 +117,12 @@ public class AlimentoDB {
                     + "SET PRECO_PESSOA = ?, DESCRICAO = ?, TIPO_ALIMENTO = ?, PRONTO = ?, TIPO_COMIDA_BEBIDA = ? " +
                     "WHERE NOME = ?");
 
-            pst.setDouble(0, updated.getPrecoPessoa());
-            pst.setString(1, updated.getDescricao());
-            pst.setString(2, updated.getTipoAlimento());
-            pst.setBoolean(3, updated.isPronto());
-            pst.setString(4, updated.getTipoComidaBebida());
-            pst.setString(5, alimento.getNome());
+            pst.setDouble(1, updated.getPrecoPessoa());
+            pst.setString(2, updated.getDescricao());
+            pst.setString(3, updated.getTipoAlimento());
+            pst.setBoolean(4, updated.isPronto());
+            pst.setString(5, updated.getTipoComidaBebida());
+            pst.setString(6, alimento.getNome());
             
             pst.executeUpdate();
             

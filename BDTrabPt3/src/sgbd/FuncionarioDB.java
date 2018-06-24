@@ -121,13 +121,13 @@ public class FuncionarioDB {
                     + "SET NOME = ?, EMAIL = ?, TELEFONE1 = ?, TELEFONE2 = ?, FUNCAO = ?, FUNCIONARIO_GERENTE_CPF = ? " +
                     "WHERE NRO_REGISTRO = ?");
 
-            pst.setString(0, updated.getNome());
-            pst.setString(1, updated.getEmail());
-            pst.setInt(2, updated.getTelefone1());
-            pst.setInt(3, updated.getTelefone2());
-            pst.setString(4, updated.getFuncao());
-            pst.setString(5, updated.getFuncionarioGerenteCpf());
-            pst.setString(6, festa.getCpf());
+            pst.setString(1, updated.getNome());
+            pst.setString(2, updated.getEmail());
+            pst.setInt(3, updated.getTelefone1());
+            pst.setInt(4, updated.getTelefone2());
+            pst.setString(5, updated.getFuncao());
+            pst.setString(6, updated.getFuncionarioGerenteCpf());
+            pst.setString(7, festa.getCpf());
             
             pst.executeUpdate();
             

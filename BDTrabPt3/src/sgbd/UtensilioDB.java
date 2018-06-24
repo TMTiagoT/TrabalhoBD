@@ -112,9 +112,9 @@ public class UtensilioDB {
                     + "SET QTD_ESTOQUE = ?, TIPO = ? " +
                     "WHERE NOME = ?");
 
-            pst.setInt(0, updated.getQtdEstoque());
-            pst.setString(1, updated.getTipo());
-            pst.setString(2, utensilio.getNome());
+            pst.setInt(1, updated.getQtdEstoque());
+            pst.setString(2, updated.getTipo());
+            pst.setString(3, utensilio.getNome());
             
             pst.executeUpdate();
             

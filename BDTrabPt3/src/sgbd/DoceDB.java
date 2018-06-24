@@ -111,10 +111,10 @@ public class DoceDB {
                     + "SET MODELO = ?, PRECO_UNIDADE = ?, DESCRICAO = ?" +
                     "WHERE NOME = ?");
 
-            pst.setString(0, updated.getModelo());
-            pst.setDouble(1, updated.getPrecoUnidade());
-            pst.setString(2, updated.getDescricao());
-            pst.setString(3, doce.getNome());
+            pst.setString(1, updated.getModelo());
+            pst.setDouble(2, updated.getPrecoUnidade());
+            pst.setString(3, updated.getDescricao());
+            pst.setString(4, doce.getNome());
             
             pst.executeUpdate();
             

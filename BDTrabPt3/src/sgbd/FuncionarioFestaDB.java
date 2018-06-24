@@ -116,9 +116,9 @@ public class FuncionarioFestaDB {
                     + "SET PRECO_FUNCIONARIO = ? " +
                     "WHERE FUNCIONARIO_CPF = ? AND FESTA_NRO_REGISTRO = ?");
 
-            pst.setDouble(0, updated.getPrecoFuncionario());
-            pst.setString(1, funcionarioFesta.getFuncionarioCpf());
-            pst.setInt(2, funcionarioFesta.getFestaNroRegistro());
+            pst.setDouble(1, updated.getPrecoFuncionario());
+            pst.setString(2, funcionarioFesta.getFuncionarioCpf());
+            pst.setInt(3, funcionarioFesta.getFestaNroRegistro());
             
             pst.executeUpdate();
             

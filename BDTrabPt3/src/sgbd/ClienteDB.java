@@ -98,12 +98,12 @@ public class ClienteDB {
                     + "SET NOME = ?, EMAIL = ?, EMPRESA = ?, TELEFONE1 = ?, TELEFONE2 = ? " +
                     "WHERE CPF = ?");
 
-            pst.setString(0, updated.getNome());
-            pst.setString(1, updated.getEmail());
-            pst.setString(2, updated.getEmpresa());
-            pst.setInt(3, updated.getTelefone1());
-            pst.setInt(4, updated.getTelefone2());
-            pst.setString(5, cliente.getCpf());
+            pst.setString(1, updated.getNome());
+            pst.setString(2, updated.getEmail());
+            pst.setString(3, updated.getEmpresa());
+            pst.setInt(4, updated.getTelefone1());
+            pst.setInt(5, updated.getTelefone2());
+            pst.setString(6, cliente.getCpf());
             
             pst.executeUpdate();
             

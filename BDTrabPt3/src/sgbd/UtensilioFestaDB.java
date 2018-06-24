@@ -116,9 +116,9 @@ public class UtensilioFestaDB {
                     + "SET QUANTIDADE = ?" +
                     "WHERE FESTA_NRO_REGISTRO = ? AND UTENSILIO_NOME = ?");
 
-            pst.setInt(0, updated.getQuantidade());
-            pst.setInt(1, utensilioFesta.getFestaNroRegistro());
-            pst.setString(2, utensilioFesta.getUtensilioNome());
+            pst.setInt(1, updated.getQuantidade());
+            pst.setInt(2, utensilioFesta.getFestaNroRegistro());
+            pst.setString(3, utensilioFesta.getUtensilioNome());
             
             pst.executeUpdate();
             

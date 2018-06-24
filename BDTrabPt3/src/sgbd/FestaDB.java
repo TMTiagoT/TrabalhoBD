@@ -120,12 +120,12 @@ public class FestaDB {
                     + "SET NRO_CONVIDADES = ?, ENDERECO = ?, TIPO = ?, DATA_HORA = ?, CLIENTE_CPF = ? " +
                     "WHERE NRO_REGISTRO = ?");
 
-            pst.setInt(0, updated.getNroConvidados());
-            pst.setString(1, updated.getEndereco());
-            pst.setString(2, updated.getTipo());
-            pst.setString(3, updated.getDataHora());
-            pst.setString(4, updated.getClienteCpf());
-            pst.setInt(5, festa.getNroRegistro());
+            pst.setInt(1, updated.getNroConvidados());
+            pst.setString(2, updated.getEndereco());
+            pst.setString(3, updated.getTipo());
+            pst.setString(4, updated.getDataHora());
+            pst.setString(5, updated.getClienteCpf());
+            pst.setInt(6, festa.getNroRegistro());
             
             pst.executeUpdate();
             

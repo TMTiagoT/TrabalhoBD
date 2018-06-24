@@ -112,10 +112,10 @@ public class BoloDB {
                     + "SET MODELO = ?, PRECO = ?, DESCRICAO = ?" +
                     "WHERE NOME = ?");
 
-            pst.setString(0, updated.getModelo());
-            pst.setDouble(1, updated.getPreco());
-            pst.setString(2, updated.getDescricao());
-            pst.setString(3, bolo.getNome());
+            pst.setString(1, updated.getModelo());
+            pst.setDouble(2, updated.getPreco());
+            pst.setString(3, updated.getDescricao());
+            pst.setString(4, bolo.getNome());
             
             pst.executeUpdate();
             
