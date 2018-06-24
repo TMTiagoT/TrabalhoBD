@@ -11,123 +11,128 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Cliente;
+import model.Utensilio;
+//import static sun.misc.Version.print;
 
-public class ClienteDB {
 
-    //selecionar todos os clientes
-    public ArrayList<Cliente> Cliente_SelectAll() {
-        ArrayList<Cliente> clientes = new ArrayList();
+/*CREATE TABLE UTENSILIO (
+    NOME VARCHAR2(40) NOT NULL,
+    QTD_ESTOQUE NUMBER(12) DEFAULT 0 NOT NULL,
+    TIPO CHAR(32) NOT NULL,
+    CONSTRAINT PK_UTENSILIO PRIMARY KEY(NOME),
+    CONSTRAINT CK1_UTENSILIO CHECK(QTD_ESTOQUE >= 0)
+); */
+
+public class UtensilioDB {
+    
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Utensilio> Utensilio_SelectAll() {
+        ArrayList<Utensilio> utensilios = new ArrayList();
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2 FROM CLIENTE");
+            ResultSet rs = st.executeQuery("SELECT NOME, QTD_ESTOQUE, TIPO FROM UTENSILIO");
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getString("CPF"), rs.getString("NOME"), rs.getString("EMAIL"),
-                                    rs.getString("EMPRESA"), rs.getInt("TELEFONE1"), rs.getInt("TELEFONE2")));
+                utensilios.add(new Utensilio(rs.getString(1), rs.getInt(2), rs.getString(3)));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_SelectAll");
+            System.out.println("Erro no Utensilio_SelectAll");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_SelectAll");
+            System.out.println("Erro no Utensilio_SelectAll");
         }
         
         ConnectionSGBD.CloseConnection(con);
 
-        return clientes;
+        return utensilios;
     }
     
-    
-    public void Cliente_Insert(Cliente cliente) {
+    public void Utensilio_Insert(Utensilio utensilio) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("INSERT INTO CLIENTE (CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO UTENSILIO (NOME, QTD_ESTOQUE, TIPO) "
+                    + "VALUES (?, ?, ?)");
             
-            pst.setString(1, cliente.getCpf());
-            pst.setString(1, cliente.getNome());
-            pst.setString(1, cliente.getEmail());
-            pst.setString(1, cliente.getEmpresa());
-            pst.setInt(1, cliente.getTelefone1());
-            pst.setInt(1, cliente.getTelefone2());
+            pst.setString(1, utensilio.getNome());
+            pst.setInt(2, utensilio.getQtdEstoque());
+            pst.setString(3, utensilio.getTipo());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Insert");
+            System.out.println("Erro no Utensilio_Insert");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Insert");
+            System.out.println("Erro no Utensilio_Insert");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-        
-    public void Cliente_Delete(Cliente cliente) {
+    public void Utensilio_Delete(Utensilio utensilio) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("DELETE FROM CLIENTE WHERE CPF = ?");
+            PreparedStatement pst = con.prepareStatement("DELETE FROM UTENSILIO WHERE NOME = ?");
             
-             pst.setString(1, cliente.getCpf());
+            pst.setString(1, utensilio.getNome());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Delete");
+            System.out.println("Erro no Utensilio_Delete");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Delete");
+            System.out.println("Erro no Utensilio_Delete");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-    public void Cliente_Update(Cliente cliente, Cliente updated) {
+    public void Utensilio_Update(Utensilio utensilio, Utensilio updated) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE CLIENTE "
-                    + "SET NOME = ?, EMAIL = ?, EMPRESA = ?, TELEFONE1 = ?, TELEFONE2 = ? " +
-                    "WHERE CPF = ?");
+            PreparedStatement pst = con.prepareStatement("UPDATE UTENSILIO "
+                    + "SET QTD_ESTOQUE = ?, TIPO = ? " +
+                    "WHERE NOME = ?");
 
-            pst.setString(1, updated.getNome());
-            pst.setString(2, updated.getEmail());
-            pst.setString(3, updated.getEmpresa());
-            pst.setInt(4, updated.getTelefone1());
-            pst.setInt(5, updated.getTelefone2());
-            pst.setString(6, cliente.getCpf());
+            pst.setInt(1, updated.getQtdEstoque());
+            pst.setString(2, updated.getTipo());
+            pst.setString(3, utensilio.getNome());
             
             pst.executeUpdate();
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Update");
+            System.out.println("Erro no Utensilio_Update");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Update");
+            System.out.println("Erro no Utensilio_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
-    
+
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

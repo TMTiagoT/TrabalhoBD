@@ -5,6 +5,7 @@
  */
 package main;
 
+import hud.TelaInicial;
 import java.util.ArrayList;
 import model.Cliente;
 import sgbd.ClienteDB;
@@ -16,14 +17,17 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList<Cliente> clientes = new ArrayList();
+//        ArrayList<Cliente> clientes = new ArrayList();
+//        
+//        ClienteDB clienteDB = new ClienteDB();
+//        clientes = clienteDB.Cliente_SelectAll();
+//        
+//        for(Cliente c : clientes){
+//            System.out.println(c);
+//        }
         
-        ClienteDB clienteDB = new ClienteDB();
-        clientes = clienteDB.Cliente_SelectAll();
-        
-        for(Cliente c : clientes){
-            System.out.println(c);
-        }
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setVisible(true);
    }
     
 }

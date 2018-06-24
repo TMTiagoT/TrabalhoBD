@@ -11,123 +11,129 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Cliente;
+import model.Bolo;
 
-public class ClienteDB {
+/*CREATE TABLE BOLO (
+    NOME VARCHAR2(40) NOT NULL,
+    MODELO VARCHAR2(40),
+    PRECO NUMBER(12,2) DEFAULT 0 NOT NULL,
+    DESCRICAO VARCHAR2(256),
+    CONSTRAINT PK_BOLO PRIMARY KEY(NOME),
+    CONSTRAINT CK1_BOLO CHECK(PRECO >= 0)
+);*/
 
-    //selecionar todos os clientes
-    public ArrayList<Cliente> Cliente_SelectAll() {
-        ArrayList<Cliente> clientes = new ArrayList();
+
+public class BoloDB {
+    
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Bolo> Bolo_SelectAll() {
+        ArrayList<Bolo> bolos = new ArrayList();
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2 FROM CLIENTE");
+            ResultSet rs = st.executeQuery("SELECT NOME, MODELO, PRECO, DESCRICAO FROM BOLO");
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getString("CPF"), rs.getString("NOME"), rs.getString("EMAIL"),
-                                    rs.getString("EMPRESA"), rs.getInt("TELEFONE1"), rs.getInt("TELEFONE2")));
+                bolos.add(new Bolo(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_SelectAll");
+            System.out.println("Erro no Bolo_SelectAll");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_SelectAll");
+            System.out.println("Erro no Bolo_SelectAll");
         }
         
         ConnectionSGBD.CloseConnection(con);
 
-        return clientes;
+        return bolos;
     }
     
-    
-    public void Cliente_Insert(Cliente cliente) {
+    public void Bolo_Insert(Bolo bolo) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("INSERT INTO CLIENTE (CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO BOLO (NOME, MODELO, PRECO, DESCRICAO) "
+                    + "VALUES (?, ?, ?, ?)");
             
-            pst.setString(1, cliente.getCpf());
-            pst.setString(1, cliente.getNome());
-            pst.setString(1, cliente.getEmail());
-            pst.setString(1, cliente.getEmpresa());
-            pst.setInt(1, cliente.getTelefone1());
-            pst.setInt(1, cliente.getTelefone2());
+            pst.setString(1, bolo.getNome());
+            pst.setString(1, bolo.getModelo());
+            pst.setDouble(1, bolo.getPreco());
+            pst.setString(1, bolo.getDescricao());
+            
+            pst.executeUpdate();
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Bolo_Delete(Bolo bolo) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("DELETE FROM BOLO WHERE NOME = ?");
+            
+            pst.setString(1, bolo.getNome());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Insert");
+            System.out.println("Erro no Bolo_Delete");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Insert");
+            System.out.println("Erro no Bolo_Delete");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-        
-    public void Cliente_Delete(Cliente cliente) {
-        
-        Connection con = null;
-        try {
-            con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("DELETE FROM CLIENTE WHERE CPF = ?");
-            
-             pst.setString(1, cliente.getCpf());
-            
-            pst.executeUpdate();
-            
-            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Delete");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Delete");
-        }
-        
-        ConnectionSGBD.CloseConnection(con);
-    }
-    
-    public void Cliente_Update(Cliente cliente, Cliente updated) {
+    public void Bolo_Update(Bolo bolo, Bolo updated) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE CLIENTE "
-                    + "SET NOME = ?, EMAIL = ?, EMPRESA = ?, TELEFONE1 = ?, TELEFONE2 = ? " +
-                    "WHERE CPF = ?");
+            PreparedStatement pst = con.prepareStatement("UPDATE BOLO "
+                    + "SET MODELO = ?, PRECO = ?, DESCRICAO = ?" +
+                    "WHERE NOME = ?");
 
-            pst.setString(1, updated.getNome());
-            pst.setString(2, updated.getEmail());
-            pst.setString(3, updated.getEmpresa());
-            pst.setInt(4, updated.getTelefone1());
-            pst.setInt(5, updated.getTelefone2());
-            pst.setString(6, cliente.getCpf());
+            pst.setString(1, updated.getModelo());
+            pst.setDouble(2, updated.getPreco());
+            pst.setString(3, updated.getDescricao());
+            pst.setString(4, bolo.getNome());
             
             pst.executeUpdate();
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Update");
+            System.out.println("Erro no Doce_Update");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Cliente_Update");
+            System.out.println("Erro no Doce_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
-    
+
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
