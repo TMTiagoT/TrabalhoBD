@@ -79,13 +79,13 @@ public class ClienteDB {
         
         Connection con = null;
         try {
-            con = ConnectionSGBD.getConnection(); 
+            con = ConnectionSGBD.getConnection();
             PreparedStatement pst = con.prepareStatement("DELETE FROM CLIENTE WHERE CPF = ?");
             
              pst.setString(1, cliente.getCpf());
             
             pst.executeUpdate();
-
+            
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());

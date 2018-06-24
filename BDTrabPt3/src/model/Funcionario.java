@@ -24,7 +24,6 @@ package model;
 );*/
 
 
-
 public class Funcionario {
     private String cpf;
     private String nome;
@@ -34,7 +33,6 @@ public class Funcionario {
     private String funcao;
     private String funcionarioGerenteCpf;
 
-    
     public Funcionario(String cpf, String nome, String email, int telefone1, int telefone2, String funcao, String funcionarioGerenteCpf) {
         this.cpf = cpf;
         this.nome = nome;
@@ -73,7 +71,6 @@ public class Funcionario {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public int getTelefone1() {
         return telefone1;

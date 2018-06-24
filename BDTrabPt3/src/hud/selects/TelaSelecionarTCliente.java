@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hud;
+package hud.selects;
+
+import hud.festa.*;
+import hud.cliente.*;
 
 /**
  *
  * @author thiago
  */
-public class TelaInicialInterna extends javax.swing.JInternalFrame {
+public class TelaSelecionarTCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaInicialInterna
      */
-    public TelaInicialInterna() {
+    public TelaSelecionarTCliente() {
         initComponents();
     }
 

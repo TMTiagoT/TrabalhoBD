@@ -14,8 +14,6 @@ package model;
     CONSTRAINT CK1_DOCE CHECK(PRECO_UNIDADE >= 0)
 );*/
 
-
-
 public class Doce {
     private String nome;
     private String modelo;

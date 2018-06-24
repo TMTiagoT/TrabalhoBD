@@ -97,7 +97,7 @@ public class UtensilioFestaDB {
             pst.setString(2, utensilioFesta.getUtensilioNome());
 
             pst.executeUpdate();
-
+            
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());

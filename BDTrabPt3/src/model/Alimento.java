@@ -21,7 +21,6 @@ package model;
     CONSTRAINT CK2_ALIMENTO CHECK(PRONTO IN (0, 1))
 ); */
 
-
 public class Alimento {
     private String nome;
     private double precoPessoa;

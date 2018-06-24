@@ -11,6 +11,9 @@ import hud.cliente.TelaRemoverCliente;
 import hud.festa.TelaAlterarFesta;
 import hud.festa.TelaInserirFesta;
 import hud.festa.TelaRemoverFesta;
+import hud.selects.TelaSelecionarTCliente;
+import hud.selects.TelaSelecionarTFesta;
+import hud.selects.TelaSelecionarTUtensilioFesta;
 import hud.utensilio.TelaInserirUtensilio;
 import hud.utensilio.TelaInserirUtensilioFesta;
 
@@ -59,25 +62,23 @@ public class TelaInicial extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem10 = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jSeparator11 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jSeparator13 = new javax.swing.JPopupMenu.Separator();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jSeparator12 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jSeparator14 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jSeparator15 = new javax.swing.JPopupMenu.Separator();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -178,10 +179,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenu4.add(jMenuItem10);
         jMenu4.add(jSeparator6);
 
-        jMenuItem14.setText("Utensilio");
-        jMenu4.add(jMenuItem14);
-        jMenu4.add(jSeparator11);
-
         jMenuBar2.add(jMenu4);
 
         jMenu5.setText("Deletar");
@@ -204,32 +201,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenu5.add(jMenuItem12);
         jMenu5.add(jSeparator7);
 
-        jMenuItem15.setText("Utensilio");
-        jMenu5.add(jMenuItem15);
-        jMenu5.add(jSeparator13);
-
         jMenuBar2.add(jMenu5);
-
-        jMenu8.setText("Buscar");
-
-        jMenuItem11.setText("Clientes");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem11);
-        jMenu8.add(jSeparator12);
-
-        jMenuItem13.setText("Festa");
-        jMenu8.add(jMenuItem13);
-        jMenu8.add(jSeparator14);
-
-        jMenuItem16.setText("Utensilio");
-        jMenu8.add(jMenuItem16);
-        jMenu8.add(jSeparator15);
-
-        jMenuBar2.add(jMenu8);
 
         jMenu7.setText("Vincular");
 
@@ -243,6 +215,42 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenu7.add(jSeparator8);
 
         jMenuBar2.add(jMenu7);
+
+        jMenu10.setText("Buscar");
+
+        jMenu9.setText("Selecionar Todos");
+
+        jMenuItem13.setText("Cliente");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem13);
+        jMenu9.add(jSeparator13);
+
+        jMenuItem14.setText("Festa");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem14);
+        jMenu9.add(jSeparator14);
+
+        jMenuItem11.setText("Utensilio - Festa");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem11);
+        jMenu9.add(jSeparator11);
+
+        jMenu10.add(jMenu9);
+        jMenu10.add(jSeparator15);
+
+        jMenuBar2.add(jMenu10);
 
         setJMenuBar(jMenuBar2);
 
@@ -332,8 +340,25 @@ public class TelaInicial extends javax.swing.JFrame {
         tiuf.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        TelaSelecionarTFesta tstf = new TelaSelecionarTFesta();
+        telaPrincipal.add(tstf);
+        tstf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        TelaSelecionarTCliente tstc = new TelaSelecionarTCliente();
+        telaPrincipal.add(tstc);
+        tstc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
+        TelaSelecionarTUtensilioFesta tstuf = new TelaSelecionarTUtensilioFesta();
+        telaPrincipal.add(tstuf);
+        tstuf.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
@@ -373,13 +398,14 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
@@ -388,8 +414,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -401,7 +425,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
-    private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;

@@ -15,7 +15,6 @@ package model;
     CONSTRAINT CK1_BOLO CHECK(PRECO >= 0)
 );*/
 
-
 public class Bolo {
     private String nome;
     private String modelo;

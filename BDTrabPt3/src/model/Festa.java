@@ -24,7 +24,6 @@ package model;
 ); */
 
 
-
 public class Festa {
     private int nroRegistro;
     private int nroConvidados;
