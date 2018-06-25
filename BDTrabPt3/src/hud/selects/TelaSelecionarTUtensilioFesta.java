@@ -7,20 +7,36 @@ package hud.selects;
 
 import hud.festa.*;
 import hud.cliente.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.UtensilioFesta;
+import sgbdCommands.UtensilioFestaDB;
 
 /**
  *
  * @author thiago
  */
 public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
-
+    ArrayList<UtensilioFesta> utensiliosFesta;
+    
     /**
      * Creates new form TelaInicialInterna
      */
     public TelaSelecionarTUtensilioFesta() {
         initComponents();
     }
-
+    
+    public void listarUtensiliosFesta() {
+        UtensilioFestaDB utensiliosFestaDB = new UtensilioFestaDB();
+        utensiliosFesta = utensiliosFestaDB.UtensilioFesta_SelectAll();
+        
+        DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+        
+        for (UtensilioFesta uf : utensiliosFesta) {
+            t.addRow(new Object[]{uf.getFestaNroRegistro(), uf.getUtensilioNome(), uf.getQuantidade()});
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,27 +47,42 @@ public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
 
-        jLabel1.setText("TELA INICIAL");
+        jLabel1.setText("FESTA_UTENSILIO");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "FESTA_NRO_REGISTRO", "UTENSILIO_NOME", "QUANTIDADE"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(290, 290, 290)
                 .addComponent(jLabel1)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -60,5 +91,7 @@ public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
