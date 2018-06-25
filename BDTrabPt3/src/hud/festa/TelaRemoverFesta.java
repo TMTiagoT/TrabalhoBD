@@ -6,6 +6,7 @@
 package hud.festa;
 
 import hud.cliente.*;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Festa;
 import sgbdCommands.ClienteDB;
@@ -97,7 +98,8 @@ public class TelaRemoverFesta extends javax.swing.JInternalFrame {
         
         Festa festa = new Festa(nroRegistro, 0, null, 0, null, null, 0, null);
         FestaDB festadb = new FestaDB();
-        festadb.Festa_Delete(festa);
+        
+        JOptionPane.showMessageDialog(this, festadb.Festa_Delete(festa));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

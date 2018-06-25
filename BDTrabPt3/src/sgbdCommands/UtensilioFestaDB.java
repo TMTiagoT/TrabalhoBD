@@ -60,7 +60,7 @@ public class UtensilioFestaDB {
         return utensiliosFesta;
     }
     
-    public void UtensilioFesta_Insert(UtensilioFesta utensilioFesta) {
+    public String UtensilioFesta_Insert(UtensilioFesta utensilioFesta) {
         
         Connection con = null;
         try {
@@ -78,12 +78,15 @@ public class UtensilioFestaDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no UtensilioFesta_Insert");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no UtensilioFesta_Insert");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Utensilio_Festa inserido com sucesso";
     }
     
     public void Utensilio_Delete(UtensilioFesta utensilioFesta) {

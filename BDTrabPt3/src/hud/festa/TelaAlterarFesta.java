@@ -6,6 +6,7 @@
 package hud.festa;
 
 import hud.cliente.*;
+import javax.swing.JOptionPane;
 import model.Festa;
 import sgbdCommands.FestaDB;
 
@@ -199,7 +200,7 @@ public class TelaAlterarFesta extends javax.swing.JInternalFrame {
         Festa updated = new Festa(0, nroConvidados, endereco, precoFesta, tipo, dataHora, 0, clienteCpf);
 
         FestaDB festadb = new FestaDB();
-        festadb.Festa_Update(festa, updated);
+        JOptionPane.showMessageDialog(this, festadb.Festa_Update(festa, updated));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

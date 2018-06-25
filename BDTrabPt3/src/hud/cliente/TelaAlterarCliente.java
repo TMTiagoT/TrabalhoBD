@@ -7,6 +7,7 @@ package hud.cliente;
 
 import java.math.BigDecimal;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import sgbdCommands.ClienteDB;
 
@@ -184,7 +185,7 @@ public class TelaAlterarCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente(cpf, null, null, null, new BigDecimal(0), new BigDecimal(0));
         Cliente updated = new Cliente(null, nome, email, empresa, telefone1, telefone2);
         ClienteDB clientedb = new ClienteDB();
-        clientedb.Cliente_Update(cliente, updated);
+        JOptionPane.showMessageDialog(this, clientedb.Cliente_Update(cliente, updated));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

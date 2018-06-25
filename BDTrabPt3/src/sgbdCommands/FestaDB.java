@@ -64,7 +64,7 @@ public class FestaDB {
         return festas;
     }
     
-    public void Festa_Insert(Festa festa) {
+    public String Festa_Insert(Festa festa) {
         
         Connection con = null;
         try {
@@ -85,15 +85,18 @@ public class FestaDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Insert");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Insert");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Festa inserido com sucesso";
     }
     
-    public void Festa_Delete(Festa festa) {
+    public String Festa_Delete(Festa festa) {
         
         Connection con = null;
         try {
@@ -108,15 +111,18 @@ public class FestaDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Insert");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Insert");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Festa deletado com sucesso";
     }
     
-    public void Festa_Update(Festa festa, Festa updated) {
+    public String Festa_Update(Festa festa, Festa updated) {
         
         Connection con = null;
         try {
@@ -137,12 +143,15 @@ public class FestaDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Update");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Festa_Update");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Festa atualizada com sucesso";
     }
 
     private void print(String string) {

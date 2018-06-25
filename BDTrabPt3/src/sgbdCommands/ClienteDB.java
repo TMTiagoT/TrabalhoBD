@@ -45,7 +45,7 @@ public class ClienteDB {
     }
     
     
-    public void Cliente_Insert(Cliente cliente) {
+    public String Cliente_Insert(Cliente cliente) {
         
         Connection con = null;
         try {
@@ -66,16 +66,19 @@ public class ClienteDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Insert");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Insert");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Cliente inserido com sucesso";
     }
     
         
-    public void Cliente_Delete(Cliente cliente) {
+    public String Cliente_Delete(Cliente cliente) {
         
         Connection con = null;
         try {
@@ -90,15 +93,19 @@ public class ClienteDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Delete");
+            return e.getMessage();
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Delete");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Cliente deletado com sucesso";
     }
     
-    public void Cliente_Update(Cliente cliente, Cliente updated) {
+    public String Cliente_Update(Cliente cliente, Cliente updated) {
         
         Connection con = null;
         try {
@@ -119,12 +126,15 @@ public class ClienteDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Update");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Cliente_Update");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Cliente atualizado com sucesso";
     }
     
     private void print(String string) {
