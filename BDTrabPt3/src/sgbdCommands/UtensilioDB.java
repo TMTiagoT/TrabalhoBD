@@ -56,7 +56,7 @@ public class UtensilioDB {
         return utensilios;
     }
     
-    public void Utensilio_Insert(Utensilio utensilio) {
+    public String Utensilio_Insert(Utensilio utensilio) {
         
         Connection con = null;
         try {
@@ -74,12 +74,15 @@ public class UtensilioDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Utensilio_Insert");
+            return e.getMessage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Erro no Utensilio_Insert");
+            return e.getMessage();
         }
         
         ConnectionSGBD.CloseConnection(con);
+        return "Utensilio inserido com sucesso";
     }
     
     public void Utensilio_Delete(Utensilio utensilio) {

@@ -7,18 +7,35 @@ package hud.selects;
 
 import hud.festa.*;
 import hud.cliente.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Festa;
+import sgbdCommands.ClienteDB;
+import sgbdCommands.FestaDB;
 
 /**
  *
  * @author thiago
  */
 public class TelaSelecionarTFesta extends javax.swing.JInternalFrame {
-
+    private ArrayList<Festa> festas;
+    
     /**
      * Creates new form TelaInicialInterna
      */
     public TelaSelecionarTFesta() {
         initComponents();
+    }
+    
+    public void listarFestas() {
+        FestaDB festadb = new FestaDB();
+        festas = festadb.Festa_SelectAll();
+        
+        DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+        
+        for (Festa f : festas) {
+            t.addRow(new Object[]{f.getNroRegistro(), f.getNroConvidados(), f.getEndereco(), f.getPrecoFesta(), f.getTipo(), f.getDataHora(), f.getPrecoTotal(), f.getClienteCpf()});
+        }
     }
 
     /**
@@ -31,27 +48,44 @@ public class TelaSelecionarTFesta extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
 
-        jLabel1.setText("TELA INICIAL");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("FESTA");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NRO_REGISTRO", "NRO_CONVIDADOS", "ENDERECO", "PRECO_FESTA", "TIPO", "DATA_HORA", "PRECO_TOTAL", "CLIENTE_CPF"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel1)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -60,5 +94,7 @@ public class TelaSelecionarTFesta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

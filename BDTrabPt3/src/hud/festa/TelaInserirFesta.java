@@ -6,6 +6,7 @@
 package hud.festa;
 
 import hud.cliente.*;
+import javax.swing.JOptionPane;
 import model.Festa;
 import sgbdCommands.FestaDB;
 
@@ -173,7 +174,7 @@ public class TelaInserirFesta extends javax.swing.JInternalFrame {
         clienteCpf = jFormattedTextField2.getText();
         Festa festa = new Festa(0, nroConvidados, endereco, precoFesta, tipo, dataHora, 0, clienteCpf);
         FestaDB festadb = new FestaDB();
-        festadb.Festa_Insert(festa);
+        JOptionPane.showMessageDialog(this, festadb.Festa_Insert(festa));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

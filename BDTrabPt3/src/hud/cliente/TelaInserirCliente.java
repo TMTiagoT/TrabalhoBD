@@ -7,6 +7,7 @@ package hud.cliente;
 
 import java.math.BigDecimal;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import sgbdCommands.ClienteDB;
 
@@ -174,7 +175,7 @@ public class TelaInserirCliente extends javax.swing.JInternalFrame {
         telefone2 = new BigDecimal(jTextField1.getText());
         Cliente cliente = new Cliente(cpf, nome, email, empresa, telefone1, telefone2);
         ClienteDB clientedb = new ClienteDB();
-        clientedb.Cliente_Insert(cliente);
+        JOptionPane.showMessageDialog(this, clientedb.Cliente_Insert(cliente));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

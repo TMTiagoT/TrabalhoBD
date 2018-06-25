@@ -7,6 +7,7 @@ package hud.utensilio;
 
 import hud.festa.*;
 import hud.cliente.*;
+import javax.swing.JOptionPane;
 import model.UtensilioFesta;
 import sgbdCommands.UtensilioFestaDB;
 
@@ -127,7 +128,8 @@ public class TelaInserirUtensilioFesta extends javax.swing.JInternalFrame {
         
         UtensilioFesta utensilioFesta = new UtensilioFesta(festaNroRegistro, utensilioNome, quantidade);
         UtensilioFestaDB utensilioFestadb = new UtensilioFestaDB();
-        utensilioFestadb.UtensilioFesta_Insert(utensilioFesta);
+        
+        JOptionPane.showMessageDialog(this, utensilioFestadb.UtensilioFesta_Insert(utensilioFesta));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -17,7 +17,7 @@ import sgbdCommands.ClienteDB;
  * @author thiago
  */
 public class TelaSelecionarTCliente extends javax.swing.JInternalFrame {
-    ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientes;
     
     /**
      * Creates new form TelaInicialInterna
@@ -53,6 +53,7 @@ public class TelaSelecionarTCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CLIENTES");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -72,12 +73,10 @@ public class TelaSelecionarTCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

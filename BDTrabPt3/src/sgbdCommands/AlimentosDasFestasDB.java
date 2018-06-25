@@ -19,7 +19,7 @@ import model.selectAux.AlimentosDasFestas;
     FROM ALIMENTO JOIN ALIMENTO_FESTA ON ALIMENTO.NOME = ALIMENTO_FESTA.ALIMENTO_NOME
     ORDER BY ALIMENTO_FESTA.FESTA_NRO_REGISTRO;*/
 
-public class AlimentosDasFastasDB {
+public class AlimentosDasFestasDB {
     
     /**
      *
