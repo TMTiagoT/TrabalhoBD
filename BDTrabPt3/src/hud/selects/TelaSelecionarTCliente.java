@@ -10,7 +10,7 @@ import hud.cliente.*;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import sgbd.ClienteDB;
+import sgbdCommands.ClienteDB;
 
 /**
  *

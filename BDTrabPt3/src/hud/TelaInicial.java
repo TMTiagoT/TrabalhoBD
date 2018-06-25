@@ -94,11 +94,11 @@ public class TelaInicial extends javax.swing.JFrame {
         telaPrincipal.setLayout(telaPrincipalLayout);
         telaPrincipalLayout.setHorizontalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
         jMenu6.setText("Opcoes");
