@@ -7,34 +7,18 @@ package hud.selects;
 
 import hud.festa.*;
 import hud.cliente.*;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import model.UtensilioFesta;
-import sgbdCommands.UtensilioFestaDB;
 
 /**
  *
  * @author thiago
  */
 public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
-    ArrayList<UtensilioFesta> utensiliosFesta;
-    
+
     /**
      * Creates new form TelaInicialInterna
      */
     public TelaSelecionarTUtensilioFesta() {
         initComponents();
-    }
-    
-    public void listarClientes() {
-        UtensilioFestaDB utensilioFestadb = new UtensilioFestaDB();
-        utensiliosFesta = utensilioFestadb.UtensilioFesta_SelectAll();
-        
-        DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
-        
-        for (UtensilioFesta uf : utensiliosFesta) {
-            t.addRow(new Object[]{uf.getFestaNroRegistro(), uf.getUtensilioNome(), uf.getQuantidade()});
-        }
     }
 
     /**
@@ -47,46 +31,27 @@ public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
 
-        jLabel1.setText("Utensilio-Festa");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "FESTA_NRO_REGISTRO", "UTENSILIO_NOME", "QUANTIDADE"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jLabel1.setText("TELA INICIAL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(346, 346, 346)
-                        .addComponent(jLabel1)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,7 +60,5 @@ public class TelaSelecionarTUtensilioFesta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
