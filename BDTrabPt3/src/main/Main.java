@@ -8,7 +8,7 @@ package main;
 import hud.TelaInicial;
 import java.util.ArrayList;
 import model.Cliente;
-import sgbd.ClienteDB;
+import sgbdCommands.ClienteDB;
 
 public class Main {
 

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.math.BigDecimal;
+
 /**
  *CREATE TABLE CLIENTE (
     CPF CHAR(14) NOT NULL,
@@ -21,10 +23,10 @@ public class Cliente {
     private String nome;
     private String email;
     private String empresa;
-    private int telefone1;
-    private int telefone2;
+    private BigDecimal telefone1;
+    private BigDecimal telefone2;
 
-    public Cliente(String cpf, String nome, String email, String empresa, int telefone1, int telefone2) {
+    public Cliente(String cpf, String nome, String email, String empresa, BigDecimal telefone1, BigDecimal telefone2) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -72,19 +74,19 @@ public class Cliente {
         this.empresa = empresa;
     }
 
-    public int getTelefone1() {
+    public BigDecimal getTelefone1() {
         return telefone1;
     }
 
-    public void setTelefone1(int telefone1) {
+    public void setTelefone1(BigDecimal telefone1) {
         this.telefone1 = telefone1;
     }
 
-    public int getTelefone2() {
+    public BigDecimal getTelefone2() {
         return telefone2;
     }
 
-    public void setTelefone2(int telefone2) {
+    public void setTelefone2(BigDecimal telefone2) {
         this.telefone2 = telefone2;
     }
     

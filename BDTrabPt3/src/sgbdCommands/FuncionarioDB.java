@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sgbd;
+package sgbdCommands;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +48,7 @@ public class FuncionarioDB {
 
             while (rs.next()) {
                 funcionarios.add(new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3),
-                                    rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
+                                    rs.getBigDecimal(4), rs.getBigDecimal(5), rs.getString(6), rs.getString(7)));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
@@ -76,8 +76,8 @@ public class FuncionarioDB {
             pst.setString(1, funcionario.getCpf());
             pst.setString(2, funcionario.getNome());
             pst.setString(3, funcionario.getEmail());
-            pst.setInt(4, funcionario.getTelefone1());
-            pst.setInt(5, funcionario.getTelefone2());
+            pst.setBigDecimal(4, funcionario.getTelefone1());
+            pst.setBigDecimal(5, funcionario.getTelefone2());
             pst.setString(6, funcionario.getFuncao());
             pst.setString(7, funcionario.getFuncionarioGerenteCpf());
             
@@ -129,8 +129,8 @@ public class FuncionarioDB {
 
             pst.setString(1, updated.getNome());
             pst.setString(2, updated.getEmail());
-            pst.setInt(3, updated.getTelefone1());
-            pst.setInt(4, updated.getTelefone2());
+            pst.setBigDecimal(3, updated.getTelefone1());
+            pst.setBigDecimal(4, updated.getTelefone2());
             pst.setString(5, updated.getFuncao());
             pst.setString(6, updated.getFuncionarioGerenteCpf());
             pst.setString(7, festa.getCpf());

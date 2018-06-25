@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sgbd;
+package sgbdCommands;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,129 +11,123 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Doce;
+import model.Cliente;
 
-/*CREATE TABLE DOCE (
-    NOME VARCHAR2(40) NOT NULL,
-    MODELO VARCHAR2(40),
-    PRECO_UNIDADE NUMBER(12,2) DEFAULT 0 NOT NULL,
-    DESCRICAO CHAR(256),
-    CONSTRAINT PK_DOCE PRIMARY KEY(NOME),
-    CONSTRAINT CK1_DOCE CHECK(PRECO_UNIDADE >= 0)
-);*/
+public class ClienteDB {
 
-public class DoceDB {
-    
-        /**
-     *
-     * @return
-     */
-    public ArrayList<Doce> Doce_SelectAll() {
-        ArrayList<Doce> doces = new ArrayList();
+    //selecionar todos os clientes
+    public ArrayList<Cliente> Cliente_SelectAll() {
+        ArrayList<Cliente> clientes = new ArrayList();
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT NOME, MODELO, PRECO_UNIDADE, DESCRICAO FROM DOCE");
+            ResultSet rs = st.executeQuery("SELECT CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2 FROM CLIENTE");
 
             while (rs.next()) {
-                doces.add(new Doce(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+                clientes.add(new Cliente(rs.getString("CPF"), rs.getString("NOME"), rs.getString("EMAIL"),
+                                    rs.getString("EMPRESA"), rs.getBigDecimal("TELEFONE1"), rs.getBigDecimal("TELEFONE2")));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_SelectAll");
+            System.out.println("Erro no Cliente_SelectAll");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_SelectAll");
+            System.out.println("Erro no Cliente_SelectAll");
         }
         
         ConnectionSGBD.CloseConnection(con);
 
-        return doces;
+        return clientes;
     }
     
-    public void Doce_Insert(Doce doce) {
+    
+    public void Cliente_Insert(Cliente cliente) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("INSERT INTO BOLO (NOME, MODELO, PRECO_UNIDADE, DESCRICAO) "
-                    + "VALUES (?, ?, ?, ?)");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO CLIENTE (CPF, NOME, EMAIL, EMPRESA, TELEFONE1, TELEFONE2) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
             
-            pst.setString(1, doce.getNome());
-            pst.setString(2, doce.getModelo());
-            pst.setDouble(3, doce.getPrecoUnidade());
-            pst.setString(4, doce.getDescricao());
+            pst.setString(1, cliente.getCpf());
+            pst.setString(2, cliente.getNome());
+            pst.setString(3, cliente.getEmail());
+            pst.setString(4, cliente.getEmpresa());
+            pst.setBigDecimal(5, cliente.getTelefone1());
+            pst.setBigDecimal(6, cliente.getTelefone2());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Insert");
+            System.out.println("Erro no Cliente_Insert");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Insert");
+            System.out.println("Erro no Cliente_Insert");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-    public void Doce_Delete(Doce doce) {
+        
+    public void Cliente_Delete(Cliente cliente) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("DELETE FROM DOCE WHERE NOME = ?");
+            PreparedStatement pst = con.prepareStatement("DELETE FROM CLIENTE WHERE CPF = ?");
             
-            pst.setString(1, doce.getNome());
+             pst.setString(1, cliente.getCpf());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Delete");
+            System.out.println("Erro no Cliente_Delete");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Delete");
+            System.out.println("Erro no Cliente_Delete");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-     public void Doce_Update(Doce doce, Doce updated) {
+    public void Cliente_Update(Cliente cliente, Cliente updated) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE DOCE "
-                    + "SET MODELO = ?, PRECO_UNIDADE = ?, DESCRICAO = ?" +
-                    "WHERE NOME = ?");
+            PreparedStatement pst = con.prepareStatement("UPDATE CLIENTE "
+                    + "SET NOME = ?, EMAIL = ?, EMPRESA = ?, TELEFONE1 = ?, TELEFONE2 = ? " +
+                    "WHERE CPF = ?");
 
-            pst.setString(1, updated.getModelo());
-            pst.setDouble(2, updated.getPrecoUnidade());
-            pst.setString(3, updated.getDescricao());
-            pst.setString(4, doce.getNome());
+            pst.setString(1, updated.getNome());
+            pst.setString(2, updated.getEmail());
+            pst.setString(3, updated.getEmpresa());
+            pst.setBigDecimal(4, updated.getTelefone1());
+            pst.setBigDecimal(5, updated.getTelefone2());
+            pst.setString(6, cliente.getCpf());
             
             pst.executeUpdate();
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Update");
+            System.out.println("Erro no Cliente_Update");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Doce_Update");
+            System.out.println("Erro no Cliente_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
-
+    
     private void print(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

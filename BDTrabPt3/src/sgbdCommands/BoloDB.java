@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sgbd;
+package sgbdCommands;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,121 +11,122 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Utensilio;
-//import static sun.misc.Version.print;
+import model.Bolo;
 
-
-/*CREATE TABLE UTENSILIO (
+/*CREATE TABLE BOLO (
     NOME VARCHAR2(40) NOT NULL,
-    QTD_ESTOQUE NUMBER(12) DEFAULT 0 NOT NULL,
-    TIPO CHAR(32) NOT NULL,
-    CONSTRAINT PK_UTENSILIO PRIMARY KEY(NOME),
-    CONSTRAINT CK1_UTENSILIO CHECK(QTD_ESTOQUE >= 0)
-); */
+    MODELO VARCHAR2(40),
+    PRECO NUMBER(12,2) DEFAULT 0 NOT NULL,
+    DESCRICAO VARCHAR2(256),
+    CONSTRAINT PK_BOLO PRIMARY KEY(NOME),
+    CONSTRAINT CK1_BOLO CHECK(PRECO >= 0)
+);*/
 
-public class UtensilioDB {
+
+public class BoloDB {
     
     /**
      *
      * @return
      */
-    public ArrayList<Utensilio> Utensilio_SelectAll() {
-        ArrayList<Utensilio> utensilios = new ArrayList();
+    public ArrayList<Bolo> Bolo_SelectAll() {
+        ArrayList<Bolo> bolos = new ArrayList();
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT NOME, QTD_ESTOQUE, TIPO FROM UTENSILIO");
+            ResultSet rs = st.executeQuery("SELECT NOME, MODELO, PRECO, DESCRICAO FROM BOLO");
 
             while (rs.next()) {
-                utensilios.add(new Utensilio(rs.getString(1), rs.getInt(2), rs.getString(3)));
+                bolos.add(new Bolo(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
             }
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_SelectAll");
+            System.out.println("Erro no Bolo_SelectAll");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_SelectAll");
+            System.out.println("Erro no Bolo_SelectAll");
         }
         
         ConnectionSGBD.CloseConnection(con);
 
-        return utensilios;
+        return bolos;
     }
     
-    public void Utensilio_Insert(Utensilio utensilio) {
+    public void Bolo_Insert(Bolo bolo) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("INSERT INTO UTENSILIO (NOME, QTD_ESTOQUE, TIPO) "
-                    + "VALUES (?, ?, ?)");
+            PreparedStatement pst = con.prepareStatement("INSERT INTO BOLO (NOME, MODELO, PRECO, DESCRICAO) "
+                    + "VALUES (?, ?, ?, ?)");
             
-            pst.setString(1, utensilio.getNome());
-            pst.setInt(2, utensilio.getQtdEstoque());
-            pst.setString(3, utensilio.getTipo());
+            pst.setString(1, bolo.getNome());
+            pst.setString(2, bolo.getModelo());
+            pst.setDouble(3, bolo.getPreco());
+            pst.setString(4, bolo.getDescricao());
+            
+            pst.executeUpdate();
+            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Erro no Bolo_Insert");
+        }
+        
+        ConnectionSGBD.CloseConnection(con);
+    }
+    
+    public void Bolo_Delete(Bolo bolo) {
+        
+        Connection con = null;
+        try {
+            con = ConnectionSGBD.getConnection();
+            PreparedStatement pst = con.prepareStatement("DELETE FROM BOLO WHERE NOME = ?");
+            
+            pst.setString(1, bolo.getNome());
             
             pst.executeUpdate();
             
             //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Insert");
+            System.out.println("Erro no Bolo_Delete");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Insert");
+            System.out.println("Erro no Bolo_Delete");
         }
         
         ConnectionSGBD.CloseConnection(con);
     }
     
-    public void Utensilio_Delete(Utensilio utensilio) {
+    public void Bolo_Update(Bolo bolo, Bolo updated) {
         
         Connection con = null;
         try {
             con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("DELETE FROM UTENSILIO WHERE NOME = ?");
-            
-            pst.setString(1, utensilio.getNome());
-            
-            pst.executeUpdate();
-            
-            //con.commit(); //depois ver de desabilitar commit automatico, mas por enquanto eh melhor assim
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Delete");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Delete");
-        }
-        
-        ConnectionSGBD.CloseConnection(con);
-    }
-    
-    public void Utensilio_Update(Utensilio utensilio, Utensilio updated) {
-        
-        Connection con = null;
-        try {
-            con = ConnectionSGBD.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE UTENSILIO "
-                    + "SET QTD_ESTOQUE = ?, TIPO = ? " +
+            PreparedStatement pst = con.prepareStatement("UPDATE BOLO "
+                    + "SET MODELO = ?, PRECO = ?, DESCRICAO = ?" +
                     "WHERE NOME = ?");
 
-            pst.setInt(1, updated.getQtdEstoque());
-            pst.setString(2, updated.getTipo());
-            pst.setString(3, utensilio.getNome());
+            pst.setString(1, updated.getModelo());
+            pst.setDouble(2, updated.getPreco());
+            pst.setString(3, updated.getDescricao());
+            pst.setString(4, bolo.getNome());
             
             pst.executeUpdate();
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Update");
+            System.out.println("Erro no Doce_Update");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Erro no Utensilio_Update");
+            System.out.println("Erro no Doce_Update");
         }
         
         ConnectionSGBD.CloseConnection(con);
